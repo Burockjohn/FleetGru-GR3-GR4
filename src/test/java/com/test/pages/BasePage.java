@@ -14,7 +14,7 @@ public class BasePage {
     /**
 
      Waits until loader screen present. If loader screen will not pop up at all,
-     NoSuchElementException will be handled  bu try/catch block
+     NoSuchElementException will be handled  by try/catch block
      Thus, we can continue in any case.*/
     public void waitUntilLoaderScreenDisappear() {
         try {
