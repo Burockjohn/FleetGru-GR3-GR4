@@ -15,6 +15,9 @@ public class CreateVehiclePage {
     @FindBy(xpath = "//a[@class='unclickable']")
     public WebElement fleetOpt;
 
+    @FindBy(xpath = "//li[@class = 'dropdown dropdown-level-1'][1]")
+    public WebElement fleetOpt2;
+
     @FindBy(xpath = "//span[.='Vehicles']")
     public WebElement vehiclesOpt;
 
