@@ -70,3 +70,24 @@ Feature: Fleetgru app Create Vehicle
       | salesmanager101 | UserUser123 |
       | storemanager51  | UserUser123 |
 
+  Scenario Outline: Authorised user should land in the "Create Car" page
+    When The user log in with "<username>" and "<password>"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user clicks Create Car button
+    Then The user land on the "Create Car" page
+    Examples:
+      | username        | password    |
+      | salesmanager101 | UserUser123 |
+      | storemanager51  | UserUser123 |
+
+
+  Scenario Outline: Create Vehicle Form data structure
+    When The user log in with "<username>" and "<password>"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user clicks Create Car button
+    And The user land on the "Create Car" page
+    Then The user should fill out the create car form in accordance with the rules.
+    Examples:
+      | username        | password    |
+      | salesmanager101 | UserUser123 |
+      | storemanager51  | UserUser123 |
