@@ -9,11 +9,10 @@ import com.test.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 public class EditVehicle_StepDefinitions {
@@ -24,28 +23,27 @@ public class EditVehicle_StepDefinitions {
     Actions actions = new Actions(Driver.getDriver());
     JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
 
-
     @When("User logs in as {string}")
     public void user_logs_in_as(String userType) {
 
         switch (userType) {
             case "sales manager":
-                loginPage.username.sendKeys(ConfigurationReader.getProperty("salesManager.username"));
-                loginPage.password.sendKeys(ConfigurationReader.getProperty("user.password"));
+                loginPage.userName.sendKeys(ConfigurationReader.getProperty("SalesManager.UserName"));
+                loginPage.password.sendKeys(ConfigurationReader.getProperty("SalesManager.Password"));
                 break;
             case " store manager":
-                loginPage.username.sendKeys(ConfigurationReader.getProperty("storeManager.username"));
-                loginPage.password.sendKeys(ConfigurationReader.getProperty("user.password"));
+                loginPage.userName.sendKeys(ConfigurationReader.getProperty("StoreManager.UserName"));
+                loginPage.password.sendKeys(ConfigurationReader.getProperty("StoreManager.Password"));
                 break;
             case "driver":
-                loginPage.username.sendKeys(ConfigurationReader.getProperty("driver.username"));
-                loginPage.password.sendKeys(ConfigurationReader.getProperty("user.password"));
+                loginPage.userName.sendKeys(ConfigurationReader.getProperty("driver.username"));
+                loginPage.password.sendKeys(ConfigurationReader.getProperty("driver.password"));
                 break;
             default:
                 System.err.println("Invalid user type");
 
         }
-        loginPage.loginBtn.click();
+        loginPage.signInBtn.click();
     }
 
     @When("User navigates to Dashboard Fleet-Vehicle page")
@@ -58,7 +56,6 @@ public class EditVehicle_StepDefinitions {
 
     @When("User clicks on a row in the table")
     public void user_clicks_on_a_row_in_the_table() {
-        //BrowserUtils.sleep(5);
         editPage.waitUntilLoaderScreenDisappear();
         actions.moveToElement(vehiclesPage.firstRow).click().perform();
 
@@ -66,12 +63,13 @@ public class EditVehicle_StepDefinitions {
 
     @When("User click on Edit button located in the upper right corner of the page")
     public void user_click_on_edit_button_located_in_the_upper_right_corner_of_the_page() {
-        BrowserUtils.waitForClickablility(editPage.editButton, 10);
+        editPage.waitUntilLoaderScreenDisappear();
         editPage.editButton.click();
     }
 
     @Then("User navigates to the Edit page")
     public void user_navigates_to_the_edit_page() {
+        editPage.waitUntilLoaderScreenDisappear();
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("update"));
     }
 
@@ -82,7 +80,7 @@ public class EditVehicle_StepDefinitions {
                 "var mouseEvent = document.createEvent('MouseEvents');" +
                 "mouseEvent.initEvent('mouseover', true, true);" +
                 "element.dispatchEvent(mouseEvent);";
-        jsExecutor.executeScript(script,vehiclesPage.firstDropdown);
+        jsExecutor.executeScript(script, vehiclesPage.firstDropdown);
         //actions.moveToElement(vehiclesPage.firstDropdown).perform();
         vehiclesPage.edit3dot.click();
         BrowserUtils.sleep(1);
@@ -97,6 +95,7 @@ public class EditVehicle_StepDefinitions {
 
     @Then("User sees {string} message")
     public void user_sees_message(String expectedMessage) {
+        editPage.waitUntilLoaderScreenDisappear();
         String actualMessage = vehiclesPage.flashMessage.getText();
         Assert.assertEquals(expectedMessage, actualMessage);
 
@@ -104,6 +103,7 @@ public class EditVehicle_StepDefinitions {
 
     @Then("User sees the subtitle as license plate and driver name")
     public void user_sees_the_subtitle_as_license_plate_and_driver_name() {
+        editPage.waitUntilLoaderScreenDisappear();
         String actualSubtitle = editPage.subtitle.getText();
         String expectedSubtitle = editPage.licensePlate.getAttribute("value") + " " + editPage.driver.getAttribute("value");
         Assert.assertEquals(expectedSubtitle, actualSubtitle);
@@ -117,7 +117,6 @@ public class EditVehicle_StepDefinitions {
 
         for (WebElement tag : editPage.tags) {
             tag.click();
-            BrowserUtils.sleep(1);
         }
 
         editPage.driver.clear();
@@ -140,12 +139,6 @@ public class EditVehicle_StepDefinitions {
         String newOdometer = "123456";
         editPage.lastOdometer.sendKeys(newOdometer);
 
-        /*
-
-        CALENDAR
-
-         */
-
         editPage.catalogValue.clear();
         String newValue = "12345678";
         editPage.catalogValue.sendKeys(newValue);
@@ -162,13 +155,17 @@ public class EditVehicle_StepDefinitions {
         String newColor = "Parliament Blue";
         editPage.color.sendKeys(newColor);
 
-        Select select = new Select(editPage.trnSelect);
-        String transmissionType = "Automatic";
-        select.selectByVisibleText(transmissionType);
+        if (Driver.getDriver().findElement(By.xpath("(//span[@class='select2-chosen'])[1]")).getText().equals("Choose a value...")) {
+            Select select1 = new Select(editPage.trnType);
+            String transmissionType = "Automatic";
+            select1.selectByVisibleText(transmissionType);
+        }
 
-        select = new Select(editPage.fuelType);
-        String fuelType = "Hybrid";
-        select.selectByVisibleText(fuelType);
+        if (Driver.getDriver().findElement(By.xpath("(//span[@class='select2-chosen'])[2]")).getText().equals("Choose a value...")) {
+            Select select2 = new Select(editPage.fuelType);
+            String fuelType = "Hybrid";
+            select2.selectByVisibleText(fuelType);
+        }
 
         editPage.co2Emissions.clear();
         String newCo2 = "0.24";
@@ -186,15 +183,18 @@ public class EditVehicle_StepDefinitions {
         String newPowerKW = "64";
         editPage.powerKW.sendKeys(newPowerKW);
 
-        editPage.logo.sendKeys("C:\\Users\\brkcn\\Downloads\\car.jpg");
+        if (!Driver.getDriver().findElement(By.partialLinkText("car.jpg")).isEnabled()) {
+            editPage.logo.sendKeys("C:\\Users\\brkcn\\OneDrive\\Masaüstü\\car.jpg");
+        }
 
     }
 
     @Then("User should see the {string} message after saving data")
     public void user_should_see_the_message_after_saving_data(String expectedMessage) {
+        editPage.saveDropdown.click();
         editPage.saveBtn.click();
-        Alert alert = Driver.getDriver().switchTo().alert();
-        String actualMessage = alert.getText();
+        editPage.waitUntilLoaderScreenDisappear();
+        String actualMessage = editPage.message.getText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
 
@@ -220,6 +220,10 @@ public class EditVehicle_StepDefinitions {
 
     @Then("User should not save after invalid entry")
     public void user_should_not_save_after_invalid_entry() {
+
+        editPage.saveDropdown.click();
+        editPage.saveBtn.click();
+        editPage.waitUntilLoaderScreenDisappear();
 
         boolean b1 = false;
         boolean b2 = false;
@@ -286,29 +290,51 @@ public class EditVehicle_StepDefinitions {
             }
         }
 
+//        System.out.println("b1 = " + b1);
+//        System.out.println("b2 = " + b2);
+//        System.out.println("b3 = " + b3);
+//        System.out.println("b4 = " + b4);
+//        System.out.println("b5 = " + b5);
+//        System.out.println("b6 = " + b6);
+//        System.out.println("b7 = " + b7);
+//        System.out.println("b8 = " + b8);
+
+        Select select1 = new Select(editPage.trnType);
+        String transmissionType = "Manual";
+        select1.selectByVisibleText(transmissionType);
+
+        Select select2 = new Select(editPage.fuelType);
+        String fuelType = "Diesel";
+        select2.selectByVisibleText(fuelType);
+
+        Driver.getDriver().findElement(By.xpath("//i[@data-role='remove']")).click();
+        BrowserUtils.sleep(1);
+
         Assert.assertTrue(b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8);
 
     }
 
     @Then("User should remain on the same page if ''Save'' is selected")
     public void user_should_remain_on_the_same_page_if_save_is_selected() {
-        Select select = new Select(editPage.saveDropdown);
-        select.selectByVisibleText("Save");
+        editPage.saveDropdown.click();
+        editPage.saveBtn.click();
         BrowserUtils.sleep(2);
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("update"));
 
     }
+
     @Then("User should remain on the same page but the data should be removed if ''Save and New'' is selected")
     public void user_should_remain_on_the_same_page_but_the_data_should_be_removed_if_save_and_new_is_selected() {
-        Select select = new Select(editPage.saveDropdown);
-        select.selectByVisibleText("Save And New");
+        editPage.saveDropdown.click();
+        editPage.saveAndNewBtn.click();
         BrowserUtils.sleep(2);
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Create Car"));
     }
+
     @Then("User should be navigated to the General Information page if ''Save and Close'' is selected")
     public void user_should_be_navigated_to_the_general_ınformation_page_if_save_and_close_is_selected() {
-        Select select = new Select(editPage.saveDropdown);
-        select.selectByVisibleText("Save And Close");
+        editPage.saveDropdown.click();
+        editPage.saveAndCloseBtn.click();
         BrowserUtils.sleep(2);
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Entities"));
     }
