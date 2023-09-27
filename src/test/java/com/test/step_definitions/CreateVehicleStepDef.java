@@ -54,6 +54,28 @@ public class CreateVehicleStepDef {
     }
 
 
+    @When("The user log in with {string} and {string}")
+    public void theUserLogInWithAnd(String username, String password) {
+
+        loginPage.username.sendKeys(username);
+        loginPage.password.sendKeys(password);
+        loginPage.loginBtn.click();
+    }
+
+    @And("The user hover over Fleet menu then clicks Vehicles page")
+    public void theUserHoverOverFleetMenuThenClicksVehiclesPage() {
+
+        BrowserUtils.sleep(3);
+        BrowserUtils.hover(vehiclePage.fleetOpt2);
+        vehiclePage.vehiclesOpt.click();
+        BrowserUtils.sleep(3);
+    }
+
+    @Then("The user should see the Create Car button")
+    public void theUserShouldSeeTheCreateCarButton() {
+
+        Assert.assertTrue(vehiclePage.createCarBtn.isDisplayed());
+    }
 }
 
 
