@@ -9,8 +9,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
 import static org.junit.Assert.assertFalse;
@@ -29,9 +27,9 @@ public class CreateVehicleStepDef {
     @When("The driver log in with username and password")
     public void theDriverLogInWithUsernameAndPassword() {
 
-        loginPage.username.sendKeys(ConfigurationReader.getProperty("driver.username"));
-        loginPage.password.sendKeys(ConfigurationReader.getProperty("user.password"));
-        loginPage.loginBtn.click();
+        loginPage.userName.sendKeys(ConfigurationReader.getProperty("driver.username"));
+        loginPage.password.sendKeys(ConfigurationReader.getProperty("driver.password"));
+        loginPage.signInBtn.click();
     }
 
     @And("The driver hover over Fleet menu then clicks Vehicles page")

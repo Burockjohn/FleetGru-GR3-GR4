@@ -21,6 +21,15 @@ public class CreateVehiclePage {
     @FindBy(xpath = "//span[.='Vehicles']")
     public WebElement vehiclesOpt;
 
+    //Serhat edit
     @FindBy(xpath = "//a[@title='Create Car']")
     public WebElement createCarBtn;
+
+    //Serhat edit
+    @FindBy(xpath = "(//tbody//tr)[1]")
+    public WebElement firstRow;
+
+    //Serhat edit
+    @FindBy(xpath = "//a[@class='btn icons-holder-text no-hash']")
+    public WebElement addEvent;
 }
