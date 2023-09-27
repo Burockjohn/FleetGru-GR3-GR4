@@ -16,6 +16,9 @@ public class CreateVehiclePage extends BasePage{
     @FindBy(xpath = "//a[@title='Create Car']")
     public WebElement createCarBtn;
 
+    @FindBy(xpath = "//h1[.='Create Car']")
+    public WebElement createCarTitle;
+
     //Serhat edit
     @FindBy(xpath = "(//tbody//tr)[1]")
     public WebElement firstRow;

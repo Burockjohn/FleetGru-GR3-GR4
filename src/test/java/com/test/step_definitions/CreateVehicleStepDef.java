@@ -12,7 +12,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 public class CreateVehicleStepDef {
 
@@ -74,7 +74,27 @@ public class CreateVehicleStepDef {
 
     @Then("The user should see the Create Car button")
     public void theUserShouldSeeTheCreateCarButton() {
+
+
         Assert.assertTrue(vehiclePage.createCarBtn.isDisplayed());
+    }
+
+    @And("The user clicks Create Car button")
+    public void theUserClicksCreateCarButton() {
+
+        vehiclePage.createCarBtn.click();
+    }
+
+    @Then("The user land on the {string} page")
+    public void theUserLandOnThePage(String title) {
+
+        String actualTitle = vehiclePage.createCarTitle.getText();
+
+        Assert.assertEquals(title,actualTitle);
+    }
+
+    @Then("The user should fill out the create car form in accordance with the rules.")
+    public void theUserShouldFillOutTheCreateCarFormInAccordanceWithTheRules() {
     }
 }
 
