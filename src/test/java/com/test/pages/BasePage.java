@@ -28,4 +28,13 @@ public class BasePage {
     @CacheLookup
     protected WebElement loaderMask;
 
+    @FindBy(xpath = "//*[text() = '\n    Fleet']") ////a[@class='unclickable']
+    public WebElement fleetOpt;
+
+    @FindBy(xpath = "//span[.='Vehicles']")
+    public WebElement vehiclesOpt;
+
+
+
+
 }

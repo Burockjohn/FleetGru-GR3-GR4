@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class EditPage {
+public class EditPage extends BasePage{
 
     public EditPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -86,5 +86,10 @@ public class EditPage {
     @FindBy(xpath = "(//button[contains (@class,'action-button')])[4]")
     public WebElement saveButton;
 
+
+    //-----------------------------------------------------------------//
+
+    @FindBy(css = "a[class$='main-group']")
+    public WebElement editButton;
 
 }
