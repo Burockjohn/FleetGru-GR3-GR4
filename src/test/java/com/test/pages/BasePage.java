@@ -18,7 +18,7 @@ public class BasePage {
      Thus, we can continue in any case.*/
     public void waitUntilLoaderScreenDisappear() {
         try {
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(30));
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(),30);
             wait.until(ExpectedConditions.invisibilityOf(loaderMask));} catch (Exception e) {
             e.printStackTrace();}
 
