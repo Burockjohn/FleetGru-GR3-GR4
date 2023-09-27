@@ -5,16 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class DashBoardPage {
+public class AddEventPage {
 
-    public DashBoardPage(){
+    public AddEventPage(){
         PageFactory.initElements(Driver.getDriver(),this);
-
     }
 
-    @FindBy(xpath = "(//a[@class='unclickable']/span)[2]")
-    public WebElement fleetBtn;
+    @FindBy(name = "oro_calendar_event_form[title]")
+    public WebElement titleBox;
 
-    @FindBy(xpath = "//span[.='Vehicles']")
-    public WebElement vehiclesBtn;
+    @FindBy(id = "ui-id-4")
+    public WebElement titleText;
 }

@@ -27,3 +27,11 @@ Feature: As a store manager and sales manager, I should be able to add an event
     And The user hover over Fleet menu then clicks Vehicles page
     And The user clicks the the vehicle in the first row
     Then The user see the Add Event button on the right upper corner
+
+    #AC3- After clicking on "Add event" button, "Add Event" page should pop up.
+    Scenario:  Store/Sales Managers should see "Add Event" page after clicking "Add event" button
+      When The "Store Manager" log in with username and password
+      And The user hover over Fleet menu then clicks Vehicles page
+      And The user clicks the the vehicle in the first row
+      And The user clicks on Add event button
+      Then The user should see Add Event page

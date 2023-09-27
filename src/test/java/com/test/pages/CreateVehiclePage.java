@@ -1,6 +1,7 @@
 package com.test.pages;
 
 import com.test.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -18,15 +19,17 @@ public class CreateVehiclePage {
     @FindBy(xpath = "//span[.='Vehicles']")
     public WebElement vehiclesOpt;
 
-    //Serhat edit
+
     @FindBy(xpath = "//a[@title='Create Car']")
     public WebElement createCarBtn;
 
     //Serhat edit
-    @FindBy(xpath = "(//tbody//tr)[1]")
+    @FindBy(xpath = "(//tr[@class='grid-row row-click-action']/td)[2]")
     public WebElement firstRow;
 
     //Serhat edit
-    @FindBy(xpath = "//a[@class='btn icons-holder-text no-hash']")
+    @FindBy(xpath = "(//a[@href='javascript: void(0);'])[2]")
     public WebElement addEvent;
+
+
 }

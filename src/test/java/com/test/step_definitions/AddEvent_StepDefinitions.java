@@ -1,9 +1,7 @@
 package com.test.step_definitions;
 
-import com.test.pages.BasePage;
-import com.test.pages.CreateVehiclePage;
-import com.test.pages.DashBoardPage;
-import com.test.pages.LoginPage;
+import com.test.pages.*;
+import com.test.utilities.BrowserUtils;
 import com.test.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -18,6 +16,7 @@ public class AddEvent_StepDefinitions {
     LoginPage loginPage = new LoginPage();
     DashBoardPage dashBoardPage =  new DashBoardPage();
     CreateVehiclePage vehiclePage = new CreateVehiclePage();
+    AddEventPage addEventPage = new AddEventPage();
     WebDriverWait wait=new WebDriverWait(Driver.getDriver(),10);
 
 
@@ -36,8 +35,9 @@ public class AddEvent_StepDefinitions {
 
         actions.moveToElement(dashBoardPage.fleetBtn).perform();
 
-        actions.moveToElement(dashBoardPage.vehiclesBtn).click().perform();
-
+       // actions.moveToElement(dashBoardPage.vehiclesBtn).click().build().perform();
+        dashBoardPage.vehiclesBtn.click();
+BrowserUtils.waitFor(5);
 
     }
 
@@ -48,6 +48,20 @@ public class AddEvent_StepDefinitions {
 
     @Then("The user see the Add Event button on the right upper corner")
     public void theUserSeeTheAddEventButtonOnTheRightUpperCorner() {
+       // wait.until(ExpectedConditions.visibilityOf(vehiclePage.addEvent));
         Assert.assertTrue(vehiclePage.addEvent.isDisplayed());
+    }
+
+
+    @And("The user clicks on Add event button")
+    public void theUserClicksOnAddEventButton() {
+        BrowserUtils.waitFor(3);
+        vehiclePage.addEvent.click();
+    }
+
+    @Then("The user should see Add Event page")
+    public void theUserShouldSeeAddEventPage() {
+        String expected = "Add Event";
+        Assert.assertTrue(vehiclePage.addEvent.getText().contains(expected));
     }
 }
