@@ -17,7 +17,7 @@ public class EditPage extends BasePage{
     @FindBy(className = "user-name")
     public WebElement subtitle;
 
-    @FindBy(xpath = "//input[@type='checkbox']")
+    @FindBy(css = "div.oro-clearfix")
     public List<WebElement> tags;
 
     @FindBy(xpath = "(//div[@class='controls']/input[1])[1]")
@@ -77,14 +77,11 @@ public class EditPage extends BasePage{
     @FindBy(id = "custom_entity_type_Logo_file-uid-6512b27613e1c")
     public WebElement logo;
 
-    @FindBy(xpath = "(//button[contains (@class,'action-button')])[2]")
-    public WebElement buttonSaveAndClose;
+    @FindBy(css = "a[class^='btn-success']")
+    public WebElement saveDropdown;
 
-    @FindBy(xpath = "(//button[contains (@class,'action-button')])[3]")
-    public WebElement buttonSaveAndNew;
-
-    @FindBy(xpath = "(//button[contains (@class,'action-button')])[4]")
-    public WebElement saveButton;
+    @FindBy(css = "button[class*='btn-success']")
+    public WebElement saveBtn;
 
 
     //-----------------------------------------------------------------//

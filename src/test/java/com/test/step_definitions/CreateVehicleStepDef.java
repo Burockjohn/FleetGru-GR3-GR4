@@ -9,9 +9,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class CreateVehicleStepDef {
 
@@ -57,23 +58,22 @@ public class CreateVehicleStepDef {
     @When("The user log in with {string} and {string}")
     public void theUserLogInWithAnd(String username, String password) {
 
-        loginPage.username.sendKeys(username);
+        loginPage.userName.sendKeys(username);
         loginPage.password.sendKeys(password);
-        loginPage.loginBtn.click();
+        loginPage.signInBtn.click();
     }
 
     @And("The user hover over Fleet menu then clicks Vehicles page")
     public void theUserHoverOverFleetMenuThenClicksVehiclesPage() {
 
         BrowserUtils.sleep(3);
-        BrowserUtils.hover(vehiclePage.fleetOpt2);
+        BrowserUtils.hover(vehiclePage.fleetOpt);
         vehiclePage.vehiclesOpt.click();
         BrowserUtils.sleep(3);
     }
 
     @Then("The user should see the Create Car button")
     public void theUserShouldSeeTheCreateCarButton() {
-
         Assert.assertTrue(vehiclePage.createCarBtn.isDisplayed());
     }
 }

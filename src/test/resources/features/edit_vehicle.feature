@@ -28,7 +28,7 @@ Feature: Fleetgru application - vehicle edition function
 
       Driver: Alphabetical                        false (number)
       Location: Alphabetical                      false (number)
-      Chassis Number: Alphanumerical              false (-+)
+      Chassis Number: Alphanumerical              false (no letter)
       Model Year: Numerical                       false (alphabetical)
       Last Odometer: Numerical                    true
       Immatriculation Date : Date(MM dd, yyyy)    true
@@ -74,7 +74,7 @@ Feature: Fleetgru application - vehicle edition function
     And User click on Edit button located in the upper right corner of the page
     Then User navigates to the Edit page
 
-  @wip
+
   Scenario: 1.2 - Navigating to the editing page by clicking edit button (except for driver)
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
@@ -95,13 +95,13 @@ Feature: Fleetgru application - vehicle edition function
     And User clicks the editing button under 3dot sign at the end of the row
     Then User sees the subtitle as license plate and driver name
 
-
-  Scenario: 4 - edit form should be filled out with the valid data
+  @wip
+  Scenario: 4/7 - edit form should be filled out with the valid data
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
     And User clicks the editing button under 3dot sign at the end of the row
     And User fills out the form with the valid data
-    Then User should save without any error
+    Then User should see the "Entity Saved" message after saving data
 
 
   Scenario: 5 - edit form should be filled out with the invalid data
@@ -116,7 +116,7 @@ Feature: Fleetgru application - vehicle edition function
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
     And User clicks the editing button under 3dot sign at the end of the row
-    And User  fills out the form with the corresponding data
+    And User fills out the form with the valid data
     Then User should remain on the same page if ''Save'' is selected
     And User should remain on the same page but the data should be removed if ''Save and New'' is selected
     And User should be navigated to the General Information page if ''Save and Close'' is selected
@@ -126,7 +126,7 @@ Feature: Fleetgru application - vehicle edition function
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
     And User clicks the editing button under 3dot sign at the end of the row
-    And User  fills out the form with the corresponding data
+    And User fills out the form with the valid data
     Then User should see the "Entity Saved" message after saving data
 
 
