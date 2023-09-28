@@ -26,4 +26,14 @@ public class CreateVehiclePage extends BasePage{
     //Serhat edit
     @FindBy(xpath = "//a[@class='btn icons-holder-text no-hash']")
     public WebElement addEvent;
+
+    @FindBy(xpath = "//select[@class='ui-datepicker-month']")
+    public WebElement selectMonth;
+
+    @FindBy(xpath ="//select[@class='ui-datepicker-year']" )
+    public WebElement selectYear;
+
+    @FindBy(xpath ="//tbody//a[.='19']" )
+    public WebElement selectDay;
+
 }
