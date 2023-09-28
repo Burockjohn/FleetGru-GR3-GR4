@@ -1,3 +1,4 @@
+@FLEET10-1206
 Feature: Fleetgru application - vehicle edition function
 
   User Story
@@ -28,7 +29,7 @@ Feature: Fleetgru application - vehicle edition function
 
       Driver: Alphabetical                        false (number)
       Location: Alphabetical                      false (number)
-      Chassis Number: Alphanumerical              false (-+)
+      Chassis Number: Alphanumerical              false (no letter)
       Model Year: Numerical                       false (alphabetical)
       Last Odometer: Numerical                    true
       Immatriculation Date : Date(MM dd, yyyy)    true
@@ -66,7 +67,7 @@ Feature: Fleetgru application - vehicle edition function
   Background:
     Given The user on the login page
 
-
+  @FLEET10-1199
   Scenario: 1.1 - Navigating to the editing page by clicking a row (except for driver)
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
@@ -74,36 +75,36 @@ Feature: Fleetgru application - vehicle edition function
     And User click on Edit button located in the upper right corner of the page
     Then User navigates to the Edit page
 
-  @wip
+  @FLEET10-1200
   Scenario: 1.2 - Navigating to the editing page by clicking edit button (except for driver)
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
     And User clicks the editing button under 3dot sign at the end of the row
     Then User navigates to the Edit page
 
-
+  @FLEET10-1201
   Scenario: 2 - Verifying that driver should not see edit button so that he can not edit
     When User logs in as "driver"
     And User navigates to QuickLaunchpad Fleet-Vehicle page
     And User clicks the editing button under 3dot sign at the end of the row
     Then User sees "You do not have permission to perform this action." message
 
-
+  @FLEET10-1202
   Scenario: 3 - Verifying edit page consists of the license plate and driver name
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
     And User clicks the editing button under 3dot sign at the end of the row
     Then User sees the subtitle as license plate and driver name
 
-
-  Scenario: 4 - edit form should be filled out with the valid data
+  @FLEET10-1203
+  Scenario: 4/7 - edit form should be filled out with the valid data
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
     And User clicks the editing button under 3dot sign at the end of the row
     And User fills out the form with the valid data
-    Then User should save without any error
+    Then User should see the "Entity saved" message after saving data
 
-
+  @FLEET10-1204
   Scenario: 5 - edit form should be filled out with the invalid data
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
@@ -111,23 +112,15 @@ Feature: Fleetgru application - vehicle edition function
     And User  fills out the form with the invalid data
     Then User should not save after invalid entry
 
-
+  @FLEET10-1205
   Scenario: 6 - Verifying there should be 3 different saving options
     When User logs in as "sales manager"
     And User navigates to Dashboard Fleet-Vehicle page
     And User clicks the editing button under 3dot sign at the end of the row
-    And User  fills out the form with the corresponding data
+    And User fills out the form with the valid data
     Then User should remain on the same page if ''Save'' is selected
     And User should remain on the same page but the data should be removed if ''Save and New'' is selected
     And User should be navigated to the General Information page if ''Save and Close'' is selected
-
-
-  Scenario: 7 - Verifying "Entity Saved" message should be displayed
-    When User logs in as "sales manager"
-    And User navigates to Dashboard Fleet-Vehicle page
-    And User clicks the editing button under 3dot sign at the end of the row
-    And User  fills out the form with the corresponding data
-    Then User should see the "Entity Saved" message after saving data
 
 
 

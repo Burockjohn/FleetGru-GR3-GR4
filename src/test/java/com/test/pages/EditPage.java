@@ -17,7 +17,7 @@ public class EditPage extends BasePage{
     @FindBy(className = "user-name")
     public WebElement subtitle;
 
-    @FindBy(xpath = "//input[@type='checkbox']")
+    @FindBy(xpath = "//div[@class='oro-clearfix']/input")
     public List<WebElement> tags;
 
     @FindBy(xpath = "(//div[@class='controls']/input[1])[1]")
@@ -56,10 +56,10 @@ public class EditPage extends BasePage{
     @FindBy(xpath = "(//div[@class='controls']/input[1])[12]")
     public WebElement color;
 
-    @FindBy(id = "s2id_custom_entity_type_Transmission-uid-6512b27613840")
-    public WebElement trnSelect;
+    @FindBy(xpath = "//*[.='Automatic']/..")
+    public WebElement trnType;
 
-    @FindBy(id = "s2id_custom_entity_type_FuelType-uid-6512b27613943")
+    @FindBy(xpath = "//*[.='Hybrid']/..")
     public WebElement fuelType;
 
     @FindBy(xpath = "(//div[@class='controls']/input[1])[13]")
@@ -74,17 +74,23 @@ public class EditPage extends BasePage{
     @FindBy(xpath = "(//div[@class='controls']/input[1])[16]")
     public WebElement powerKW;
 
-    @FindBy(id = "custom_entity_type_Logo_file-uid-6512b27613e1c")
+    @FindBy(xpath = "//*[.='Choose File']/preceding-sibling::input")
     public WebElement logo;
 
-    @FindBy(xpath = "(//button[contains (@class,'action-button')])[2]")
-    public WebElement buttonSaveAndClose;
+    @FindBy(css = "a[class^='btn-success']")
+    public WebElement saveDropdown;
 
-    @FindBy(xpath = "(//button[contains (@class,'action-button')])[3]")
-    public WebElement buttonSaveAndNew;
+    @FindBy(xpath = "//*[text() = '\n            Save\n        ']")
+    public WebElement saveBtn;
 
-    @FindBy(xpath = "(//button[contains (@class,'action-button')])[4]")
-    public WebElement saveButton;
+    @FindBy(xpath = "//*[text() = '\n            Save and New\n        ']")
+    public WebElement saveAndNewBtn;
+
+    @FindBy(xpath = "//*[text() = '\n            Save and Close\n        ']")
+    public WebElement saveAndCloseBtn;
+
+    @FindBy(xpath = "(//div[@class='message'])[1]")
+    public WebElement message;
 
 
     //-----------------------------------------------------------------//
