@@ -30,16 +30,15 @@ public class AddEvent_StepDefinitions {
     }
 
 
-    @And("The user hover over Fleet menu then clicks Vehicles page")
-    public void theUserHoverOverFleetMenuThenClicksVehiclesPage() {
-        Actions actions = new Actions(Driver.getDriver());
-
-        actions.moveToElement(dashBoardPage.fleetBtn).perform();
-
-        actions.moveToElement(dashBoardPage.vehiclesBtn).click().perform();
-
-
-    }
+//    @And("The user hover over Fleet menu then clicks Vehicles page")
+//    public void theUserHoverOverFleetMenuThenClicksVehiclesPage() {
+//        Actions actions = new Actions(Driver.getDriver());
+//
+//        actions.moveToElement(dashBoardPage.fleetBtn).perform();
+//
+//        actions.moveToElement(dashBoardPage.vehiclesBtn).click().perform();
+//
+//    }
 
     @And("The user clicks the the vehicle in the first row")
     public void theUserClicksTheTheVehicleInTheFirstRow() {
