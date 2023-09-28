@@ -23,6 +23,10 @@ public class VehiclesPage {
     @FindBy(css = "div.message")
     public WebElement flashMessage; // alert
 
+    @FindBy(xpath = "//a[@class='btn icons-holder-text no-hash']")
+    public WebElement addEvent;
+
+
 
 
 
