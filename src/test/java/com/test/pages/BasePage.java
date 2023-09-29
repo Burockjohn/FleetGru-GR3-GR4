@@ -14,11 +14,11 @@ public class BasePage {
     /**
 
      Waits until loader screen present. If loader screen will not pop up at all,
-     NoSuchElementException will be handled  bu try/catch block
+     NoSuchElementException will be handled  by try/catch block
      Thus, we can continue in any case.*/
     public void waitUntilLoaderScreenDisappear() {
         try {
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(30));
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(),30);
             wait.until(ExpectedConditions.invisibilityOf(loaderMask));} catch (Exception e) {
             e.printStackTrace();}
 
@@ -27,5 +27,14 @@ public class BasePage {
     @FindBy(css = "div[class='loader-mask shown']")
     @CacheLookup
     protected WebElement loaderMask;
+
+    @FindBy(xpath = "//*[text() = '\n    Fleet']") ////a[@class='unclickable']
+    public WebElement fleetOpt;
+
+    @FindBy(xpath = "//span[.='Vehicles']")
+    public WebElement vehiclesOpt;
+
+
+
 
 }
