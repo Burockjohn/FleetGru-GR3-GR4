@@ -1,3 +1,4 @@
+#@FLT-2490
 Feature: Fleetgru application - Vehicle Table View Function
 
   User Story :
@@ -16,7 +17,7 @@ Feature: Fleetgru application - Vehicle Table View Function
 
   Background:
     Given The user on the login page
-
+#@FLT-2550
   Scenario Outline: 1- All user types can see all vehicle information under 'Fleet-Vehicles' module
     When User logs in as "<userType>"
     And User navigates to Dashboard Fleet-Vehicle page
@@ -26,7 +27,7 @@ Feature: Fleetgru application - Vehicle Table View Function
       | driver       |
       | storemanager |
       | salesmanager |
-
+#@FLT-2551
   Scenario Outline: 2- User can see the total page number
     When User logs in as "<userType>"
     And User navigates to Dashboard Fleet-Vehicle page
@@ -36,7 +37,7 @@ Feature: Fleetgru application - Vehicle Table View Function
       | driver       |
       | storemanager |
       | salesmanager |
-
+  #@FLT-2552
   Scenario Outline: 3- User can go to next page clicking ">" button and can go to previous page clicking "<" button
     When User logs in as "<userType>"
     And User navigates to Dashboard Fleet-Vehicle page
@@ -51,7 +52,7 @@ Feature: Fleetgru application - Vehicle Table View Function
       | button     |
       | driver       |
       | storemanager |
-
+  #@FLT-2553
     Scenario Outline: 4- User can see total recordings of vehicles
       When User logs in as "<userType>"
       And User navigates to Dashboard Fleet-Vehicle page
@@ -61,7 +62,7 @@ Feature: Fleetgru application - Vehicle Table View Function
         | driver       |
         | storemanager |
         | salesmanager |
-
+#@FLT-2554
       Scenario Outline:  5- User can download table data in XLS or CSV format from "Export Grid" (a confirmation message is enough to validate)
         When User logs in as "<userType>"
         And User navigates to Dashboard Fleet-Vehicle page
