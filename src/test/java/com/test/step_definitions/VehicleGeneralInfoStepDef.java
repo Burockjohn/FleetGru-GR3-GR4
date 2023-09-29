@@ -1,17 +1,37 @@
 package com.test.step_definitions;
 
 import com.test.pages.BasePage;
+import com.test.pages.CreateVehiclePage;
+import com.test.pages.GeneralInformationPage;
+import com.test.pages.LoginPage;
+import com.test.utilities.BrowserUtils;
+import com.test.utilities.ConfigurationReader;
+import com.test.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class VehicleGeneralInfoStepDef extends BasePage {
+    LoginPage loginPage=new LoginPage();
+    CreateVehiclePage vehiclePage=new CreateVehiclePage();
+    GeneralInformationPage informationPage=new GeneralInformationPage();
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
-
+        Driver.getDriver().get(ConfigurationReader.getProperty("base.url"));
+        loginPage.username.sendKeys(ConfigurationReader.getProperty("driver.username"));
+        loginPage.password.sendKeys(ConfigurationReader.getProperty("user.password"));
+        loginPage.loginBtn.click();
     }
     @When("User can see the {string}  page by clicking on any vehicle \\(row), under Fleet-Vehicle module")
-    public void user_can_see_the_page_by_clicking_on_any_vehicle_row_under_fleet_vehicle_module(String string) {
+    public void user_can_see_the_page_by_clicking_on_any_vehicle_row_under_fleet_vehicle_module(String genPageName) {
+        BrowserUtils.sleep(10);
+        vehiclePage.fleetOpt.click();
+        vehiclePage.vehiclesOpt.click();
+        BrowserUtils.sleep(10);
+        informationPage.rowButton.click();
+        BrowserUtils.sleep(10);
+       Assert.assertEquals(informationPage.genInfoPageName.getText(),genPageName);
 
     }
     @When("User can see the {string} page clicking on the Eye \\(View) icon at the end of each row, under Fleet-Vehicle module")
