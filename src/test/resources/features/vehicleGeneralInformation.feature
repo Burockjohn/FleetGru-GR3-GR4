@@ -14,3 +14,13 @@ Acceptance Criteria:
 4- Driver shouldn't see "Add Event", "Edit" and "Delete" buttons
 5- Vehicle information displayed on the "General Information" page and "Fleet-Vehicle" page should be the same
 
+  Background:
+
+    Given the user is on the login page
+  @wip
+  Scenario: User should see Vehicle ınformation page
+    When User can see the "General Information"  page by clicking on any vehicle (row), under Fleet-Vehicle module
+    And User can see the "General Information" page clicking on the Eye (View) icon at the end of each row, under Fleet-Vehicle module
+    And Sales manager and store manager should see "Edit", "Delete" and "Add Event" buttons on the "General Information" page
+    And Driver shouldn't see "Add Event", "Edit" and "Delete" buttons
+    Then Vehicle information displayed on the "General Information" page and "Fleet-Vehicle" page should be the same
