@@ -41,25 +41,18 @@ public class VehicleTableArrangementsStepDefinitions {
 
     @Then("The car record should match with the selected number below in View Per Page dropdown")
     public void the_car_record_should_match_with_the_selected_number_below_in_view_per_page_dropdown() {
-/*
+
         vehicleTableArrangementsPage.viewPerPage.click();
-        vehicleTableArrangementsPage.option10.click();
+        vehicleTableArrangementsPage.option25.click();
         Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+vehicleTableArrangementsPage.carRecord.size());
         System.out.println(vehicleTableArrangementsPage.pageNumber.getText()+" = "+vehicleTableArrangementsPage.carRecord.size());
 
-        BrowserUtils.sleep(3);
-*/
-        vehicleTableArrangementsPage.vehiclesOpt.click();
-
- //       for (WebElement eachItem : vehicleTableArrangementsPage.itemsOfDropdown) {
- //           eachItem.click();
- //           BrowserUtils.sleep(2);
-//
-  //          //Assert.assertEquals(eachItem.getAttribute("data-size"),""+vehicleTableArrangementsPage.carRecord.size());
-
- //           System.out.println(eachItem.getAttribute("data-size") + " = " + vehicleTableArrangementsPage.carRecord.size());
- //       }
-
+//        for (WebElement eachItem : vehicleTableArrangementsPage.itemsOfDropdown) {
+//            vehicleTableArrangementsPage.viewPerPage.click();
+//            eachItem.click();
+//            Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+vehicleTableArrangementsPage.carRecord.size());
+//            System.out.println(vehicleTableArrangementsPage.pageNumber.getText()+" = "+vehicleTableArrangementsPage.carRecord.size());
+//        }
     }
 
 
@@ -79,8 +72,6 @@ public class VehicleTableArrangementsStepDefinitions {
             Assert.assertEquals(number.get(i),eachItem.getAttribute("data-size"));
             ++i;
         }
-
-
     }
 
     @When("The user selects one hundred in View Per Page dropdown")

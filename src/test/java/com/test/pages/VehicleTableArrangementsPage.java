@@ -76,24 +76,4 @@ public class VehicleTableArrangementsPage extends BasePage{
     @FindBy(xpath = "//button[.='Update']")
     public WebElement updateButton;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
