@@ -56,10 +56,10 @@ public class EditPage extends BasePage{
     @FindBy(xpath = "(//div[@class='controls']/input[1])[12]")
     public WebElement color;
 
-    @FindBy(xpath = "//*[.='Automatic']/..")
+    @FindBy(xpath = "(//select)[1]")
     public WebElement trnType;
 
-    @FindBy(xpath = "//*[.='Hybrid']/..")
+    @FindBy(xpath = "(//select)[2]")
     public WebElement fuelType;
 
     @FindBy(xpath = "(//div[@class='controls']/input[1])[13]")

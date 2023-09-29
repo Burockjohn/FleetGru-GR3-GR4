@@ -19,9 +19,9 @@ public class VehicleGeneralInfoStepDef extends BasePage {
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("base.url"));
-        loginPage.username.sendKeys(ConfigurationReader.getProperty("driver.username"));
+        loginPage.userName.sendKeys(ConfigurationReader.getProperty("driver.username"));
         loginPage.password.sendKeys(ConfigurationReader.getProperty("user.password"));
-        loginPage.loginBtn.click();
+        loginPage.signInBtn.click();
     }
     @When("User can see the {string}  page by clicking on any vehicle \\(row), under Fleet-Vehicle module")
     public void user_can_see_the_page_by_clicking_on_any_vehicle_row_under_fleet_vehicle_module(String genPageName) {

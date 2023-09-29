@@ -9,7 +9,6 @@ import com.test.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -155,17 +154,13 @@ public class EditVehicle_StepDefinitions {
         String newColor = "Parliament Blue";
         editPage.color.sendKeys(newColor);
 
-        if (Driver.getDriver().findElement(By.xpath("(//span[@class='select2-chosen'])[1]")).getText().equals("Choose a value...")) {
-            Select select1 = new Select(editPage.trnType);
-            String transmissionType = "Automatic";
-            select1.selectByVisibleText(transmissionType);
-        }
+        Select select1 = new Select(editPage.trnType);
+        String transmissionType = "Automatic";
+        select1.selectByVisibleText(transmissionType);
 
-        if (Driver.getDriver().findElement(By.xpath("(//span[@class='select2-chosen'])[2]")).getText().equals("Choose a value...")) {
-            Select select2 = new Select(editPage.fuelType);
-            String fuelType = "Hybrid";
-            select2.selectByVisibleText(fuelType);
-        }
+        Select select2 = new Select(editPage.fuelType);
+        String fuelType = "Hybrid";
+        select2.selectByVisibleText(fuelType);
 
         editPage.co2Emissions.clear();
         String newCo2 = "0.24";
@@ -183,9 +178,7 @@ public class EditVehicle_StepDefinitions {
         String newPowerKW = "64";
         editPage.powerKW.sendKeys(newPowerKW);
 
-        if (!Driver.getDriver().findElement(By.partialLinkText("car.jpg")).isEnabled()) {
-            editPage.logo.sendKeys("C:\\Users\\brkcn\\OneDrive\\Masaüstü\\car.jpg");
-        }
+        editPage.logo.sendKeys("C:\\Users\\brkcn\\OneDrive\\Masaüstü\\car.jpg");
 
     }
 
@@ -290,27 +283,19 @@ public class EditVehicle_StepDefinitions {
             }
         }
 
-//        System.out.println("b1 = " + b1);
-//        System.out.println("b2 = " + b2);
-//        System.out.println("b3 = " + b3);
-//        System.out.println("b4 = " + b4);
-//        System.out.println("b5 = " + b5);
-//        System.out.println("b6 = " + b6);
-//        System.out.println("b7 = " + b7);
-//        System.out.println("b8 = " + b8);
+        System.out.println("b1 = " + b1);
+        System.out.println("b2 = " + b2);
+        System.out.println("b3 = " + b3);
+        System.out.println("b4 = " + b4);
+        System.out.println("b5 = " + b5);
+        System.out.println("b6 = " + b6);
+        System.out.println("b7 = " + b7);
+        System.out.println("b8 = " + b8);
 
-        Select select1 = new Select(editPage.trnType);
-        String transmissionType = "Manual";
-        select1.selectByVisibleText(transmissionType);
-
-        Select select2 = new Select(editPage.fuelType);
-        String fuelType = "Diesel";
-        select2.selectByVisibleText(fuelType);
-
-        Driver.getDriver().findElement(By.xpath("//i[@data-role='remove']")).click();
+        editPage.saveBtn.click();
         BrowserUtils.sleep(1);
 
-        Assert.assertTrue(b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8);
+        Assert.assertEquals(true, (b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8));
 
     }
 
