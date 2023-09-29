@@ -5,11 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CreateVehiclePage extends BasePage{
+public class CreateVehiclePage extends BasePage {
 
     public CreateVehiclePage() {
 
-        PageFactory.initElements(Driver.getDriver(),this);
+        PageFactory.initElements(Driver.getDriver(), this);
     }
 
 
@@ -19,11 +19,17 @@ public class CreateVehiclePage extends BasePage{
     @FindBy(xpath = "//h1[.='Create Car']")
     public WebElement createCarTitle;
 
-    //Serhat edit
-    @FindBy(xpath = "(//tbody//tr)[1]")
-    public WebElement firstRow;
-
-    //Serhat edit
     @FindBy(xpath = "//a[@class='btn icons-holder-text no-hash']")
     public WebElement addEvent;
+
+    @FindBy(xpath = "//select[@class='ui-datepicker-month']")
+    public WebElement selectMonth;
+
+    @FindBy(xpath ="//select[@class='ui-datepicker-year']" )
+    public WebElement selectYear;
+
+    @FindBy(xpath ="//tbody//a[.='19']" )
+    public WebElement selectDay;
+  
+
 }

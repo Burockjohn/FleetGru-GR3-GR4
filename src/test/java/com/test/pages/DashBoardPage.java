@@ -12,7 +12,7 @@ public class DashBoardPage {
 
     }
 
-    @FindBy(xpath = "//span[@class='title title-level-1'][normalize-space()='Fleet']")
+    @FindBy(xpath = "(//a[@class='unclickable']/span)[2]")
     public WebElement fleetBtn;
 
     @FindBy(xpath = "//span[.='Vehicles']")

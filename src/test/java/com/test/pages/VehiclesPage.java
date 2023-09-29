@@ -20,6 +20,14 @@ public class VehiclesPage {
     @FindBy(xpath = "(//li[@class='launcher-item'])[2]")
     public WebElement edit3dot;
 
+    @FindBy(css = "div.message")
+    public WebElement flashMessage; // alert
+
+    @FindBy(xpath = "//a[@class='btn icons-holder-text no-hash']")
+    public WebElement addEvent;
+
+
+
 
 
 }
