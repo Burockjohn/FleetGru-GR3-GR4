@@ -70,6 +70,7 @@ Feature: Fleetgru app Create Vehicle
       | salesmanager101 | UserUser123 |
       | storemanager51  | UserUser123 |
 
+  @FLT-2522
   Scenario Outline: Authorised user should land in the "Create Car" page
     When The user log in with "<username>" and "<password>"
     And The user hover over Fleet menu then clicks Vehicles page
@@ -85,9 +86,25 @@ Feature: Fleetgru app Create Vehicle
     When The user log in with "<username>" and "<password>"
     And The user hover over Fleet menu then clicks Vehicles page
     And The user clicks Create Car button
-    And The user land on the "Create Car" page
     Then The user should fill out the create car form in accordance with the rules.
     Examples:
       | username        | password    |
       | salesmanager101 | UserUser123 |
       | storemanager51  | UserUser123 |
+
+  Scenario: User should be filled out with the invalid data-Negative scenario
+    When User logs in as "sales manager"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user clicks Create Car button
+    And User  fills out the form with the invalid data
+    Then User should not save after invalid entry
+
+  Scenario: Verifying there should be 3 different saving options
+    When User logs in as "sales manager"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user clicks Create Car button
+    And The user should fill out the create car form in accordance with the rules.
+    Then User should remain on the same page if ''Save'' is selected
+    And User should remain on the same page but the data should be removed if ''Save and New'' is selected
+    And User should be navigated to the General Information page if ''Save and Close'' is selected
+    And User should see "Entity saved" message after saving data
