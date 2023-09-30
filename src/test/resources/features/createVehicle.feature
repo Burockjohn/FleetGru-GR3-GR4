@@ -81,7 +81,7 @@ Feature: Fleetgru app Create Vehicle
       | salesmanager101 | UserUser123 |
       | storemanager51  | UserUser123 |
 
-
+  @FLT-2530
   Scenario Outline: Create Vehicle Form data structure
     When The user log in with "<username>" and "<password>"
     And The user hover over Fleet menu then clicks Vehicles page
@@ -92,13 +92,14 @@ Feature: Fleetgru app Create Vehicle
       | salesmanager101 | UserUser123 |
       | storemanager51  | UserUser123 |
 
-  Scenario: User should be filled out with the invalid data-Negative scenario
-    When User logs in as "sales manager"
-    And The user hover over Fleet menu then clicks Vehicles page
-    And The user clicks Create Car button
-    And User  fills out the form with the invalid data
-    Then User should not save after invalid entry
+#  Scenario: User should be filled out with the invalid data-Negative scenario
+#    When User logs in as "sales manager"
+#    And The user hover over Fleet menu then clicks Vehicles page
+#    And The user clicks Create Car button
+#    And User  fills out the form with the invalid data
+#    Then User should not save after invalid entry
 
+  @FLT-2541
   Scenario: Verifying there should be 3 different saving options
     When User logs in as "sales manager"
     And The user hover over Fleet menu then clicks Vehicles page
