@@ -35,11 +35,9 @@ public class VehicleTableArrangementsPage extends BasePage{
     @FindBy(xpath = "(//a[@class='dropdown-item'])[4]")
     public WebElement option100;
 
-    //(//ul[@class='dropdown-menu pull-right'])[2]/li
+    public WebElement[] options = {option10, option25, option50};
 
-    ////a[@class='dropdown-item']
-
-    @FindBy(xpath = "//tr[@class='grid-row']/td[1]")
+    @FindBy(tagName = "tr")
     public List<WebElement> carRecord;
 
     @FindBy(xpath = "(//i[@class='fa-refresh'])[2]")

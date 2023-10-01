@@ -43,18 +43,39 @@ public class VehicleTableArrangementsStepDefinitions {
     public void the_car_record_should_match_with_the_selected_number_below_in_view_per_page_dropdown() {
 
         vehicleTableArrangementsPage.viewPerPage.click();
+        vehicleTableArrangementsPage.option10.click();
+        Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+(vehicleTableArrangementsPage.carRecord.size()-2));
+
+        vehicleTableArrangementsPage.viewPerPage.click();
         vehicleTableArrangementsPage.option25.click();
-        Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+vehicleTableArrangementsPage.carRecord.size());
-        System.out.println(vehicleTableArrangementsPage.pageNumber.getText()+" = "+vehicleTableArrangementsPage.carRecord.size());
+        Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+(vehicleTableArrangementsPage.carRecord.size()-2));
 
-//        for (WebElement eachItem : vehicleTableArrangementsPage.itemsOfDropdown) {
-//            vehicleTableArrangementsPage.viewPerPage.click();
-//            eachItem.click();
-//            Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+vehicleTableArrangementsPage.carRecord.size());
-//            System.out.println(vehicleTableArrangementsPage.pageNumber.getText()+" = "+vehicleTableArrangementsPage.carRecord.size());
-//        }
+
+        vehicleTableArrangementsPage.viewPerPage.click();
+        vehicleTableArrangementsPage.option50.click();
+        Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+(vehicleTableArrangementsPage.carRecord.size()-2));
+
+/*        vehicleTableArrangementsPage.viewPerPage.click();
+        vehicleTableArrangementsPage.option100.click();//There are not a hundred rows.
+        Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+(vehicleTableArrangementsPage.carRecord.size()-2));
+        System.out.println(vehicleTableArrangementsPage.pageNumber.getText()+" = "+(vehicleTableArrangementsPage.carRecord.size()-2));
+*/
+
+/*        for (WebElement eachItem : vehicleTableArrangementsPage.itemsOfDropdown) {
+            vehicleTableArrangementsPage.viewPerPage.click();
+            eachItem.click();
+            Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+(vehicleTableArrangementsPage.carRecord.size()-2));
+            System.out.println(vehicleTableArrangementsPage.pageNumber.getText()+" = "+(vehicleTableArrangementsPage.carRecord.size()-2));
+        }*/
+
+/*        for (WebElement option : vehicleTableArrangementsPage.options) {
+            vehicleTableArrangementsPage.viewPerPage.click();
+            option.click();
+            Assert.assertEquals(vehicleTableArrangementsPage.pageNumber.getText(),""+(vehicleTableArrangementsPage.carRecord.size()-2));
+            System.out.println(vehicleTableArrangementsPage.pageNumber.getText()+" = "+(vehicleTableArrangementsPage.carRecord.size()-2));
+        }*/
+
     }
-
 
     @Then("The number in dropdown should be {string} by default")
     public void the_number_in_dropdown_should_be_by_default(String defaultNumber) {
