@@ -12,6 +12,10 @@ Feature: Vehicle Table Arrangements
   @FLT-2543
   Scenario: Verify that the user can arrange rows/vehicle numbers on 'View Per Page' dropdown under Fleet-Vehicles module
     Then The car record should match with the selected number below in View Per Page dropdown
+      | 10  |
+      | 25  |
+      | 50  |
+      | 100 |
 
   @FLT-2544
   Scenario: Verify that he value of View Per Page should be 25 by default

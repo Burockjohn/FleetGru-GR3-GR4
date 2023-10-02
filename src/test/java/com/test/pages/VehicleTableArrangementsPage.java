@@ -24,18 +24,8 @@ public class VehicleTableArrangementsPage extends BasePage{
     @FindBy(xpath = "//a[@class='dropdown-item']")
     public List<WebElement> itemsOfDropdown;
 
-    @FindBy(xpath = "(//a[@class='dropdown-item'])[1]")
-    public WebElement option10;
-    @FindBy(xpath = "(//a[@class='dropdown-item'])[2]")
-    public WebElement option25;
-
-    @FindBy(xpath = "(//a[@class='dropdown-item'])[3]")
-    public WebElement option50;
-
     @FindBy(xpath = "(//a[@class='dropdown-item'])[4]")
     public WebElement option100;
-
-    public WebElement[] options = {option10, option25, option50};
 
     @FindBy(tagName = "tr")
     public List<WebElement> carRecord;
@@ -58,7 +48,6 @@ public class VehicleTableArrangementsPage extends BasePage{
     @FindBy(xpath = "(//input[@name='multiselect_0'])[6]")
     public WebElement modelYearCheckbox;
 
-    ////div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value']
     @FindBy(xpath = "(//span[@class='caret'])[2]")
     public WebElement modelYearAllDropdown;
 
