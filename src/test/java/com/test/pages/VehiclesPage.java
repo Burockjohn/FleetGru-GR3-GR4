@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class VehiclesPage {
 
     public VehiclesPage() {
@@ -26,6 +28,12 @@ public class VehiclesPage {
     @FindBy(xpath = "//a[@class='btn icons-holder-text no-hash']")
     public WebElement addEvent;
 
+
+    @FindBy(linkText = "...")
+    public List<WebElement> threeDot;
+
+    @FindBy(xpath = "//li[@class='launcher-item']//a")
+    public List<WebElement> action;
 
 
 
