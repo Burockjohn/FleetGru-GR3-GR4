@@ -22,7 +22,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to delete a 
   Background:
     Given The user on the login page
 
-  @cag
+  @AC1
   Scenario Outline: As a 'Sales Manager' and 'Store Manager', I should be able to delete a car
 
     When The user log in with "<username>" and "<password>"
@@ -35,3 +35,35 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to delete a 
       | user1           | UserUser123 |
       | salesmanager101 | UserUser123 |
       | storemanager51  | UserUser123 |
+
+
+    @AC2
+    Scenario Outline: Delete Confirmation" pop up should be displayed when the user clicks on the delete button
+
+      When The user log in with "<username>" and "<password>"
+      And The user hover over Fleet menu then clicks Vehicles page
+      And The user hover over the the three dots at the end of each row
+      Then The user should see the Delete button
+      When The user clicks on the delete button
+      Then The user should see "Delete Confirmation"
+
+
+      Examples:
+        | username        | password    |
+        | user1           | UserUser123 |
+        | salesmanager101 | UserUser123 |
+        | storemanager51  | UserUser123 |
+
+
+  @AC3
+  Scenario:You do not have permission to perform this action." message should be displayed if the driver clicks on the "Yes, Delete"
+
+    When User logs in as "driver"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user hover over the the three dots at the end of each row
+    When The user clicks on the delete button
+    And The user accepts confirmation
+    Then The user should see "You do not have permission to perform this action." message
+
+
+

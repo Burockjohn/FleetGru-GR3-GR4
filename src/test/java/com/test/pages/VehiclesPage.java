@@ -35,6 +35,15 @@ public class VehiclesPage {
     @FindBy(xpath = "//li[@class='launcher-item']//a")
     public List<WebElement> action;
 
+    @FindBy(xpath = "(//h3)[2]")
+    public WebElement popupMessage;
+
+    @FindBy(className = "message")
+    public WebElement permissionMessage;
+
+    @FindBy(className = "btn-danger")
+    public WebElement deleteConfirmButton;
+
 
 
 
