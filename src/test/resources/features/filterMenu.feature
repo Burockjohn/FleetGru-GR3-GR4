@@ -1,7 +1,7 @@
 @filterFunctionality
 Feature: Filter feature
 
-  As a user, I should be able to use filter options
+  As a store manager and sales manager, I should be able to use filter options
 
 
 
