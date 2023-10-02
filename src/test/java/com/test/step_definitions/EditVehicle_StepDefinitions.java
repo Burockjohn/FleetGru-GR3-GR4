@@ -30,7 +30,7 @@ public class EditVehicle_StepDefinitions {
                 loginPage.userName.sendKeys(ConfigurationReader.getProperty("SalesManager.UserName"));
                 loginPage.password.sendKeys(ConfigurationReader.getProperty("SalesManager.Password"));
                 break;
-            case " store manager":
+            case "store manager":
                 loginPage.userName.sendKeys(ConfigurationReader.getProperty("StoreManager.UserName"));
                 loginPage.password.sendKeys(ConfigurationReader.getProperty("StoreManager.Password"));
                 break;
