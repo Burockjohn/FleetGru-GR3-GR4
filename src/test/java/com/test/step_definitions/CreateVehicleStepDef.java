@@ -241,6 +241,105 @@ public class CreateVehicleStepDef {
         String actualMessage = editPage.message.getText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
+
+    @Then("The user enters invalid data in the create car form")
+    public void theUserEntersInvalidDataInTheCreateCarForm() {
+        editPage.waitUntilLoaderScreenDisappear();
+
+        editPage.licensePlate.sendKeys("*");
+
+        editPage.driver.sendKeys(" 8");
+
+        editPage.location.sendKeys("32");
+
+        editPage.chassisNumber.sendKeys("BC");
+
+        editPage.modelYear.sendKeys("XX");
+
+        editPage.seatsNumber.sendKeys("1453");
+
+        editPage.doorsNumber.sendKeys("666");
+
+        editPage.color.sendKeys("75");
+
+    }
+
+    @And("The user can not save this form after invalid entry")
+    public void theUserCanNotSaveThisFormAfterInvalidEntry() {
+        editPage.waitUntilLoaderScreenDisappear();
+
+
+        boolean b1 = false;
+        boolean b2 = false;
+        boolean b3 = false;
+        boolean b4 = false;
+        boolean b5 = false;
+        boolean b6 = false;
+        boolean b7 = false;
+        boolean b8 = false;
+
+        for (char each : editPage.licensePlate.getAttribute("value").toCharArray()) {
+            if (Character.isLetterOrDigit(each)) {
+                b1 = true;
+            } else {
+                b1 = false;
+                break;
+            }
+        }
+
+        for (char each : editPage.driver.getAttribute("value").toCharArray()) {
+            if (Character.isLetter(each)) {
+                b2 = true;
+            } else {
+                b2 = false;
+                break;
+            }
+        }
+
+        for (char each : editPage.location.getAttribute("value").toCharArray()) {
+            if (Character.isLetter(each)) {
+                b3 = true;
+            } else {
+                b3 = false;
+                break;
+            }
+        }
+
+        for (char each : editPage.chassisNumber.getAttribute("value").toCharArray()) {
+            if (Character.isLetter(each)) {
+                b4 = true;
+                break;
+            }
+        }
+
+        for (char each : editPage.modelYear.getAttribute("value").toCharArray()) {
+            if (Character.isDigit(each)) {
+                b5 = true;
+            } else {
+                b5 = false;
+                break;
+            }
+        }
+
+        b6 = Integer.parseInt(editPage.seatsNumber.getAttribute("value")) <= 10;
+        b7 = Integer.parseInt(editPage.doorsNumber.getAttribute("value")) <= 10;
+
+        for (char each : editPage.color.getAttribute("value").toCharArray()) {
+            if (Character.isLetter(each)) {
+                b8 = true;
+            } else {
+                b8 = false;
+                break;
+            }
+        }
+
+        editPage.saveAndCloseBtn.click();
+        BrowserUtils.sleep(1);
+
+        Assert.assertFalse("The user can not see save massage",editPage.message.isDisplayed());
+
+
+    }
 }
 
 
