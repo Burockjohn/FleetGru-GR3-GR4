@@ -1,3 +1,4 @@
+@FLT-2500
 Feature: Fleetgru app Create Vehicle
 
   User Story
@@ -53,8 +54,61 @@ Feature: Fleetgru app Create Vehicle
   Background:
     Given The user on the login page
 
+  @FLT-2519
   Scenario: The driver can not see Create Car button
     When The driver log in with username and password
     And The driver hover over Fleet menu then clicks Vehicles page
     Then The driver can not see Create Car button
 
+  @FLT-2521
+  Scenario Outline: Sales manager and store manager can see "Create Car" button
+    When The user log in with "<username>" and "<password>"
+    And The user hover over Fleet menu then clicks Vehicles page
+    Then The user should see the Create Car button
+    Examples:
+      | username        | password    |
+      | salesmanager101 | UserUser123 |
+      | storemanager51  | UserUser123 |
+
+  @FLT-2522
+  Scenario Outline: Authorised user should land in the "Create Car" page
+    When The user log in with "<username>" and "<password>"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user clicks Create Car button
+    Then The user land on the "Create Car" page
+    Examples:
+      | username        | password    |
+      | salesmanager101 | UserUser123 |
+      | storemanager51  | UserUser123 |
+
+  @FLT-2530
+  Scenario Outline: Create Vehicle Form data structure
+    When The user log in with "<username>" and "<password>"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user clicks Create Car button
+    Then The user should fill out the create car form in accordance with the rules.
+    Examples:
+      | username        | password    |
+      | salesmanager101 | UserUser123 |
+      | storemanager51  | UserUser123 |
+
+
+
+  @FLT-2575
+  Scenario: Create Car form should be filled out with the invalid data-Negative scenario
+    When User logs in as "sales manager"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user clicks Create Car button
+    Then The user enters invalid data in the create car form
+    And The user can not save this form after invalid entry
+
+  @FLT-2541
+  Scenario: Verifying there should be 3 different saving options
+    When User logs in as "sales manager"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user clicks Create Car button
+    And The user should fill out the create car form in accordance with the rules.
+    Then User should remain on the same page if ''Save'' is selected
+    And User should remain on the same page but the data should be removed if ''Save and New'' is selected
+    And User should be navigated to the General Information page if ''Save and Close'' is selected
+    And User should see "Entity saved" message after saving data
