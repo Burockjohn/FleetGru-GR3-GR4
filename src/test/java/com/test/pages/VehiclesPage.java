@@ -44,6 +44,9 @@ public class VehiclesPage {
     @FindBy(className = "btn-danger")
     public WebElement deleteConfirmButton;
 
+    @FindBy(xpath =   "//div//div[@class='message']")
+    public WebElement flashMessageHolder;
+
 
 
 

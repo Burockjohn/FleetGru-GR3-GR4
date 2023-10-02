@@ -66,4 +66,20 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to delete a 
     Then The user should see "You do not have permission to perform this action." message
 
 
+  @AC4
+  Scenario Outline: 'Sales Manager' and 'Store Manager' can delete any car by clicking on the delete button at the end of each row and the "Item deleted" message should be displayed.
 
+    When The user log in with "<username>" and "<password>"
+    And The user hover over Fleet menu then clicks Vehicles page
+    And The user hover over the the three dots at the end of each row
+    Then The user should see the Delete button
+    When The user clicks on the delete button
+    Then The user should see "Delete Confirmation"
+    When The user accepts confirmation
+    Then The user should see "Item deleted" flash message
+
+
+    Examples:
+      | username        | password    |
+      | salesmanager101 | UserUser123 |
+      | storemanager51  | UserUser123 |

@@ -61,7 +61,7 @@ public class DeleteCar_StepDef {
 
     @When("The user accepts confirmation")
     public void the_user_accepts_confirmation() {
-
+        BrowserUtils.sleep(5);
         vehiclesPage.deleteConfirmButton.click();
     }
     @Then("The user should see {string} message")
@@ -70,6 +70,12 @@ public class DeleteCar_StepDef {
         String actualMessage = vehiclesPage.permissionMessage.getText();
 
         Assert.assertEquals(expectMessage,actualMessage);
+    }
+    @Then("The user should see {string} flash message")
+    public void the_user_should_see_flash_message(String expectedFlashMessage) {
+        String actualFlashMessage = vehiclesPage.flashMessageHolder.getText();
+
+        Assert.assertEquals(expectedFlashMessage,actualFlashMessage);
     }
 
 
