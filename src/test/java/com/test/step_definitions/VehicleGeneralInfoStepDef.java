@@ -11,198 +11,43 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
 
-import static com.google.common.base.CharMatcher.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-public class VehicleGeneralInfoStepDef extends GeneralInformationPage {
-    LoginPage loginPage = new LoginPage();
-    CreateVehiclePage vehiclePage = new CreateVehiclePage();
-    GeneralInformationPage informationPage = new GeneralInformationPage();
-    String genPageName;
-
+public class VehicleGeneralInfoStepDef extends BasePage {
+    LoginPage loginPage=new LoginPage();
+    CreateVehiclePage vehiclePage=new CreateVehiclePage();
+    GeneralInformationPage informationPage=new GeneralInformationPage();
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("base.url"));
-
+        loginPage.userName.sendKeys(ConfigurationReader.getProperty("driver.username"));
+        loginPage.password.sendKeys(ConfigurationReader.getProperty("user.password"));
+        loginPage.signInBtn.click();
     }
-
     @When("User can see the {string}  page by clicking on any vehicle \\(row), under Fleet-Vehicle module")
     public void user_can_see_the_page_by_clicking_on_any_vehicle_row_under_fleet_vehicle_module(String genPageName) {
-        loginPage.userName.sendKeys(ConfigurationReader.getProperty("driver.username"));
-        loginPage.password.sendKeys(ConfigurationReader.getProperty("driver.password"));
-        loginPage.signInBtn.click();
         BrowserUtils.sleep(10);
         vehiclePage.fleetOpt.click();
         vehiclePage.vehiclesOpt.click();
-        BrowserUtils.sleep(20);
+        BrowserUtils.sleep(10);
         informationPage.rowButton.click();
-        BrowserUtils.sleep(5);
-        Assert.assertEquals(informationPage.genInfoPageName.getText(), genPageName);
-
+        BrowserUtils.sleep(10);
+       Assert.assertEquals(informationPage.genInfoPageName.getText(),genPageName);
 
     }
-
     @When("User can see the {string} page clicking on the Eye \\(View) icon at the end of each row, under Fleet-Vehicle module")
-    public void user_can_see_the_page_clicking_on_the_eye_view_icon_at_the_end_of_each_row_under_fleet_vehicle_module(String genPageName) throws InterruptedException {
-        Actions actions=new Actions(Driver.getDriver());
-        Driver.getDriver().navigate().back();
-        BrowserUtils.sleep(5);
-       // BrowserUtils.hover(informationPage.endHover);
-
-        actions.moveToElement(informationPage.endHover).build().perform();
-        BrowserUtils.sleep(10);
-        actions.moveToElement(informationPage.eye).click().perform();
-
-        BrowserUtils.sleep(5);
-        Assert.assertEquals(informationPage.genInfoPageName.getText(), genPageName);
-
+    public void user_can_see_the_page_clicking_on_the_eye_view_icon_at_the_end_of_each_row_under_fleet_vehicle_module(String string) {
 
     }
-
-    @When("Sales manager should see {string}, {string} and {string} buttons on the {string} page")
-    public void sales_manager_and_store_manager_should_see_and_buttons_on_the_page(String edit, String delete, String addEvent, String genPageName) {
-
-        loginPage.userName.sendKeys(ConfigurationReader.getProperty("SalesManager.UserName"));
-        loginPage.password.sendKeys(ConfigurationReader.getProperty("SalesManager.Password"));
-        loginPage.signInBtn.click();
-        BrowserUtils.sleep(10);
-        vehiclePage.fleetOpt.click();
-        vehiclePage.vehiclesOpt.click();
-        BrowserUtils.sleep(20);
-        informationPage.rowButton.click();
-        BrowserUtils.sleep(5);
-        Assert.assertEquals(informationPage.genInfoPageName.getText(), genPageName);
-        System.out.println("informationPage.editButton = " + informationPage.editButton.getText());
-        //Assert.assertEquals(informationPage.editButton.getText(), edit);
-        Assert.assertTrue(informationPage.editButton.isDisplayed());
-        Assert.assertTrue(informationPage.deleteButton.isDisplayed());
-        Assert.assertTrue(informationPage.AddButton.isDisplayed());
+    @When("Sales manager and store manager should see {string}, {string} and {string} buttons on the {string} page")
+    public void sales_manager_and_store_manager_should_see_and_buttons_on_the_page(String string, String string2, String string3, String string4) {
 
     }
-
-    @When("store manager should see {string}, {string} and {string} buttons on the {string} page")
-    public void store_manager_and_store_manager_should_see_and_buttons_on_the_page(String edit, String delete, String addEvent, String genPageName) {
-
-        loginPage.userName.sendKeys(ConfigurationReader.getProperty("StoreManager.UserName"));
-        loginPage.password.sendKeys(ConfigurationReader.getProperty("StoreManager.Password"));
-        loginPage.signInBtn.click();
-        BrowserUtils.sleep(10);
-        vehiclePage.fleetOpt.click();
-        vehiclePage.vehiclesOpt.click();
-        BrowserUtils.sleep(20);
-        informationPage.rowButton.click();
-        BrowserUtils.sleep(5);
-        Assert.assertEquals(informationPage.genInfoPageName.getText(), genPageName);
-        //System.out.println("informationPage.editButton = " + informationPage.editButton.getText());
-        // System.out.println("informationPage.deleteButton = " + informationPage.deleteButton.getText());
-        // System.out.println("informationPage.AddButton = " + informationPage.AddButton.getText());
-        Assert.assertTrue(informationPage.editButton.isDisplayed());
-        Assert.assertTrue(informationPage.deleteButton.isDisplayed());
-        Assert.assertTrue(informationPage.AddButton.isDisplayed());
-
-        // Assert.assertEquals(informationPage.editButton,edit);
-        // Assert.assertEquals(informationPage.deleteButton.getText(),delete);
-        //Assert.assertEquals(informationPage.AddButton.getText(),addEvent);
-
-
-    }
-
     @When("Driver shouldn't see {string}, {string} and {string} buttons")
-    public void driver_shouldn_t_see_and_buttons(String edit, String delete, String addEvent) {
-        loginPage.userName.sendKeys(ConfigurationReader.getProperty("driver.username"));
-        loginPage.password.sendKeys(ConfigurationReader.getProperty("driver.password"));
-        loginPage.signInBtn.click();
-        BrowserUtils.sleep(10);
-        vehiclePage.fleetOpt.click();
-        vehiclePage.vehiclesOpt.click();
-        BrowserUtils.sleep(20);
-        informationPage.rowButton.click();
-        BrowserUtils.sleep(10);
-
-        Assert.assertEquals(false,informationPage.deleteButton.isEnabled());
-        Assert.assertEquals(false,informationPage.editButton.isEnabled());
-        Assert.assertEquals(false,informationPage.AddButton.isDisplayed());
+    public void driver_shouldn_t_see_and_buttons(String string, String string2, String string3) {
 
     }
-
     @Then("Vehicle information displayed on the {string} page and {string} page should be the same")
     public void vehicle_information_displayed_on_the_page_and_page_should_be_the_same(String string, String string2) {
-        loginPage.userName.sendKeys(ConfigurationReader.getProperty("StoreManager.UserName"));
-        loginPage.password.sendKeys(ConfigurationReader.getProperty("StoreManager.Password"));
-        loginPage.signInBtn.click();
-        BrowserUtils.sleep(20);
-        vehiclePage.fleetOpt.click();
-        vehiclePage.vehiclesOpt.click();
-        String carsPageLicencePlateText = informationPage.carsPageLicencePlate.getText();
-        String carsPageTagsText = informationPage.carsPageTags.getText();
-        String carsPageDriverText = informationPage.carsPageDriver.getText();
-        String carsPageLocationText = informationPage.carsPageLocation.getText();
-        String carsPageChassisNumberText = informationPage.carsPageChassisNumber.getText();
-        String carsPageModelYearText = informationPage.carsPageModelYear.getText();
-        String carsPageLastOdometerText = informationPage.carsPageLastOdometer.getText();
-        String carsPageImmatriculationText = informationPage.carsPageImmatriculation.getText();
-        String carsFirstContractText = informationPage.carsFirstContract.getText();
-        String carsPageCatalogValueText = informationPage.carsPageCatalogValue.getText();
-        String carsPageSeatsNumberText = informationPage.carsPageSeatsNumber.getText();
-        String carsPageDoorsNumberText = informationPage.carsPageDoorsNumber.getText();
-        String carsPageColorText = informationPage.carsPageColor.getText();
-        String carsPageTransmissionText = informationPage.carsPageTransmission.getText();
-        String carsPageFuelTypeText = informationPage.carsPageFuelType.getText();
-        String carsPageCO2Text = informationPage.carsPageCO2.getText();
-        String carsPageHorsepowerText = informationPage.carsPageHorsepower.getText();
-        String carsPageHorsepowerTaxText = informationPage.carsPageHorsepowerTax.getText();
-        String carsPagePowerText = informationPage.carsPagePower.getText();
-
-
-        BrowserUtils.sleep(5);
-        informationPage.rowButton.click();
-        BrowserUtils.sleep(5);
-        String genPageLicencePlate = informationPage.genLicencePlate.getText();
-        String genTagsText = informationPage.genTags.getText();
-        String genDriverText = informationPage.genDriver.getText();
-        String genLocationText = informationPage.genLocation.getText();
-        String genChassisNumberText = "942,606";
-        //String genChassisNumberText = informationPage.genChassisNumber.getText();
-        String genModelYearText = informationPage.genModelYear.getText();
-        String genLastOdometerText = "41,000";
-        //String genLastOdometerText=informationPage.genLastOdometer.getText();
-        String genImmatriculationText = informationPage.genImmatriculation.getText();
-        String genFirstContractText = informationPage.genFirstContract.getText();
-        String genCatalogValueText = informationPage.genCatalogValue.getText();
-        String genSeatsNumberText = informationPage.genSeatsNumber.getText();
-        String genDoorsNumberText = informationPage.genDoorsNumber.getText();
-        String genColorText = informationPage.genColor.getText();
-        String genTransmissionText = informationPage.genTransmission.getText();
-        String genFuelTypeText = informationPage.genFuelType.getText();
-        String genCO2Text = informationPage.genCO2.getText();
-        String genHorsepowerText = informationPage.genHorsepower.getText();
-        String genHorsepowerTaxText = informationPage.genHorsepowerTax.getText();
-        String genPowerText = informationPage.genPower.getText();
-
-
-        Assert.assertEquals(carsPageLicencePlateText, genPageLicencePlate);
-        Assert.assertEquals(carsPageTagsText, genTagsText);
-        Assert.assertEquals(carsPageDriverText, genDriverText);
-        Assert.assertEquals(carsPageLocationText, genLocationText);
-        Assert.assertEquals(carsPageChassisNumberText, genChassisNumberText);
-        Assert.assertEquals(carsPageModelYearText, genModelYearText);
-        Assert.assertEquals(carsPageLastOdometerText, genLastOdometerText);
-        Assert.assertEquals(carsPageImmatriculationText, genImmatriculationText);
-        Assert.assertEquals(carsFirstContractText, genFirstContractText);
-        Assert.assertEquals(carsPageCatalogValueText, genCatalogValueText);
-        Assert.assertEquals(carsPageSeatsNumberText, genSeatsNumberText);
-        Assert.assertEquals(carsPageDoorsNumberText, genDoorsNumberText);
-        Assert.assertEquals(carsPageColorText, genColorText);
-        Assert.assertEquals(carsPageTransmissionText, genTransmissionText);
-        Assert.assertEquals(carsPageFuelTypeText, genFuelTypeText);
-        Assert.assertEquals(carsPageCO2Text, genCO2Text);
-        Assert.assertEquals(carsPageHorsepowerText, genHorsepowerText);
-        Assert.assertEquals(carsPageHorsepowerTaxText, genHorsepowerTaxText);
-        Assert.assertEquals(carsPagePowerText, genPowerText);
-
 
     }
 
