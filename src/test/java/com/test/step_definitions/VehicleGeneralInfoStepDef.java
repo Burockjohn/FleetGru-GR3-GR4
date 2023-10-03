@@ -9,7 +9,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.google.common.base.CharMatcher.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -45,19 +50,25 @@ public class VehicleGeneralInfoStepDef extends GeneralInformationPage {
 
     @When("User can see the {string} page clicking on the Eye \\(View) icon at the end of each row, under Fleet-Vehicle module")
     public void user_can_see_the_page_clicking_on_the_eye_view_icon_at_the_end_of_each_row_under_fleet_vehicle_module(String genPageName) throws InterruptedException {
+
         Actions actions=new Actions(Driver.getDriver());
         Driver.getDriver().navigate().back();
-        BrowserUtils.sleep(5);
-       // BrowserUtils.hover(informationPage.endHover);
-        actions.moveToElement(informationPage.threeDot).click();
-        BrowserUtils.sleep(10);
+        BrowserUtils.sleep(3);
+        // BrowserUtils.hover(informationPage.endHover);
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
+        String script = "var element = arguments[0];" +
+                "var mouseEvent = document.createEvent('MouseEvents');" +
+                "mouseEvent.initEvent('mouseover', true, true);" +
+                "element.dispatchEvent(mouseEvent);";
+        jsExecutor.executeScript(script, informationPage.threeDot);
+//        actions.moveToElement(informationPage.threeDot).click();
+        BrowserUtils.sleep(2);
         informationPage.eye.click();
 
-        BrowserUtils.sleep(5);
+        BrowserUtils.sleep(2);
         Assert.assertEquals(informationPage.genInfoPageName.getText(), genPageName);
-
-
     }
+
 
     @When("Sales manager should see {string}, {string} and {string} buttons on the {string} page")
     public void sales_manager_and_store_manager_should_see_and_buttons_on_the_page(String edit, String delete, String addEvent, String genPageName) {
@@ -109,20 +120,30 @@ public class VehicleGeneralInfoStepDef extends GeneralInformationPage {
 
     @When("Driver shouldn't see {string}, {string} and {string} buttons")
     public void driver_shouldn_t_see_and_buttons(String edit, String delete, String addEvent) {
+
         loginPage.userName.sendKeys(ConfigurationReader.getProperty("driver.username"));
         loginPage.password.sendKeys(ConfigurationReader.getProperty("driver.password"));
         loginPage.signInBtn.click();
-        BrowserUtils.sleep(10);
+        BrowserUtils.sleep(3);
         vehiclePage.fleetOpt.click();
         vehiclePage.vehiclesOpt.click();
-        BrowserUtils.sleep(20);
+        BrowserUtils.sleep(3);
         informationPage.rowButton.click();
-        BrowserUtils.sleep(10);
+        BrowserUtils.sleep(3);
 
-        Assert.assertEquals(false,informationPage.deleteButton.isEnabled());
-        Assert.assertEquals(false,informationPage.editButton.isEnabled());
-        //Assert.assertEquals(false,informationPage.AddButton.isDisplayed());
+        List<String> aTagOuterText = new ArrayList<>();
+        for (WebElement each : Driver.getDriver().findElements(By.xpath("//a"))) {
+            aTagOuterText.add(each.getAttribute("outerText"));
+        }
 
+        for (String each : aTagOuterText) {
+            Assert.assertEquals(false,each.contains(edit));
+            Assert.assertEquals(false,each.contains(delete));
+            Assert.assertEquals(false,each.contains(addEvent));
+
+
+
+    }
     }
 
     @Then("Vehicle information displayed on the {string} page and {string} page should be the same")
