@@ -21,6 +21,8 @@ public class VehicleTableArrangementsPage extends BasePage{
     @FindBy(xpath = "//button[@class='btn dropdown-toggle ']")
     public WebElement pageNumber;
 
+    @FindBy(xpath = "//label[@class='dib'][2]")
+    public WebElement totalPageNumber;
     @FindBy(xpath = "//a[@class='dropdown-item']")
     public List<WebElement> itemsOfDropdown;
 

@@ -26,6 +26,11 @@ public class VehiclesPage {
     @FindBy(xpath = "//a[@class='btn icons-holder-text no-hash']")
     public WebElement addEvent;
 
+    @FindBy(linkText = "next")
+    public WebElement nextBtn;
+
+    @FindBy(linkText = "prev")
+    public WebElement prevBtn;
 
 
 
