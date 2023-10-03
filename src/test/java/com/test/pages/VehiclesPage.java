@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class VehiclesPage {
+public class VehiclesPage extends BasePage {
 
     public VehiclesPage() {
         PageFactory.initElements(Driver.getDriver(),this);
@@ -41,12 +41,22 @@ public class VehiclesPage {
     public List<WebElement> filterNames;
 
 
+    @FindBy(css = "ul[class^='ui-multiselect-checkboxes']>li[style='']")
+    public WebElement filterName;
 
 
-    @FindBy(css = ".filter-items>div>div[class*='btn']")
+    //@FindBy(css = ".filter-items>div>div[class*='btn']")
+    @FindBy(css = ".filter-items>div[style='display: inline-block;']")
     public List<WebElement> chosenFilters;
 
 
+
+    @FindBy(css = "[type='search']")
+    public WebElement inputSearchForFiltering;
+
+
+    @FindBy(css = "a[class*='reset-action']")
+    public WebElement resetIcon;
 
 
 
