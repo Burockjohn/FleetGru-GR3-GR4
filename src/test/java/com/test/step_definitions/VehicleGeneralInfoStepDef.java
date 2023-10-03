@@ -27,6 +27,10 @@ public class VehicleGeneralInfoStepDef extends GeneralInformationPage {
     public void the_user_is_on_the_login_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("base.url"));
 
+        loginPage.userName.sendKeys(ConfigurationReader.getProperty("driver.username"));
+        loginPage.password.sendKeys(ConfigurationReader.getProperty("user.password"));
+        loginPage.signInBtn.click();
+
     }
 
     @When("User can see the {string}  page by clicking on any vehicle \\(row), under Fleet-Vehicle module")
