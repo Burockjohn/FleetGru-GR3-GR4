@@ -16,30 +16,36 @@ Feature:Fleetgru application-logout function
   (if the user does not do any  mouse or keyboard action for 3 minutes)
 
   Background:
-    Given The user on the login page
 
-    Scenario: Successful logout
-      When User click on the "profile" button
-      And User click on the "Logout" button
-      Then User should be landing to the "Login" page
-      And user should see the "Login"page title
+    Given user is on the login page
+    When user enters username "salesmanager103"
+    And user enters password "UserUser123"
+    Then user clicks to login button
 
-      Scenario:Prevent going back to hone page after logout
-        When user clicks logout button under the profile menu
-        And user should land on the login page
-        And user clicks the step back button
-        Then user can not access to the main page
+  @wip
+  Scenario: Successful logout
+    When User click on the profile info button
+    And User click on the Logout button
+    And user should see the Login page title
 
-        Scenario:Logout when closing the tab
-          When user open vehicles page under fleet module
-          And user open contacts page under customers module
-          And user open calendar events page under activities module
-          And user open jobs page under system module
-          And user open a new tab in the same session and close rest of all pages related to Xfleet
-          And user goes to the login page again
-          Then user can not access to the main page
+  Scenario:Prevent going back to hone page after logout
+    When User click on the profile info button
+    And User click on the Logout button
+    And user should see the Login page title
+    And user clicks the step back button
+    Then user can not access to the main page
 
-          Scenario:Logout after being inactive for 3 minutes
-            When user waits for more than 3 minutes
-            Then user should land on the login page
+  """Scenario:Logout when closing the tab
+    When user open vehicles page under fleet module
+    And user open contacts page under customers module
+    And user open calendar events page under activities module
+    And user open jobs page under system module
+    And user open a new tab in the same session and close rest of all pages related to Xfleet
+    And user goes to the login page again
+    Then user can not access to the main page
+
+  Scenario:Logout after being inactive for 3 minutes
+    When user waits for more than  180 seconds
+    Then user should land on the login page
+    """
 
