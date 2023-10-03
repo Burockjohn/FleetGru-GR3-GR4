@@ -15,7 +15,7 @@ public class GeneralInformationPage extends BasePage{
     @FindBy(xpath = "//span[.='General Information']")
     public WebElement genInfoPageName;
     //@FindBy(xpath = "(//a[@class='dropdown-toggle'])[4]")
-    @FindBy(xpath = "(//li[@class='launcher-item'])[1]")
+    @FindBy(xpath = "(//div[@class='dropdown']/a)[2]")
     public WebElement threeDot;
    //@FindBy(xpath = "(//i[@class='fa-eye hide-text'])[1]")
      @FindBy(xpath = "//a[@title='View']")
