@@ -18,7 +18,7 @@ Feature:As a user, I should be able to see the detailed information of a specifi
 
     Given the user is on the login page
 
-  @wip
+
   Scenario: User should see Vehicle ınformation page
     When User can see the "General Information"  page by clicking on any vehicle (row), under Fleet-Vehicle module
     And User can see the "General Information" page clicking on the Eye (View) icon at the end of each row, under Fleet-Vehicle module
@@ -32,6 +32,6 @@ Feature:As a user, I should be able to see the detailed information of a specifi
 
   Scenario:  Driver can not see  edit delete add button
     And Driver shouldn't see "Add Event", "Edit" and "Delete" buttons
-
+  @wip
   Scenario: same information
     When Vehicle information displayed on the "General Information" page and "Fleet-Vehicle" page should be the same
