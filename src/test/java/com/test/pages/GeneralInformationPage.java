@@ -14,12 +14,11 @@ public class GeneralInformationPage extends BasePage{
     public WebElement rowButton;
     @FindBy(xpath = "//span[.='General Information']")
     public WebElement genInfoPageName;
-    @FindBy(xpath = "(//a[@class='dropdown-toggle'])[4]")// benim
-
-    //@FindBy(xpath = "(//div[@class='drobdown']//*[text()='...'])[5]")
-    public WebElement endHover;
-   @FindBy(xpath = "(//i[@class='fa-eye hide-text'])[1]")// benim
-    // @FindBy(xpath = "//a[@title='View']")
+    //@FindBy(xpath = "(//a[@class='dropdown-toggle'])[4]")
+    @FindBy(xpath = "(//li[@class='launcher-item'])[1]")
+    public WebElement threeDot;
+   //@FindBy(xpath = "(//i[@class='fa-eye hide-text'])[1]")
+     @FindBy(xpath = "//a[@title='View']")
     public WebElement eye;
     @FindBy(xpath = "//a[@class='btn back icons-holder-text edit-button main-group']")
     public WebElement editButton;
