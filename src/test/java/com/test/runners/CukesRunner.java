@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
                 "me.jvt.cucumber.report.PrettyReports:target/cucumber"},
         features = "src/test/resources/features",
         glue = "com/test/step_definitions",
-        dryRun = true,
-        tags = "@pojo"
+        dryRun = false,
+        tags = "@filterFunctionality"
 )
 public class CukesRunner {
 }
