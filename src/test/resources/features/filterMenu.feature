@@ -1,4 +1,4 @@
-@filterFunctionality
+@FLT-2599
 Feature: Filter feature
 
   As a store manager and sales manager, I should be able to use filter options
@@ -12,10 +12,13 @@ Feature: Filter feature
   4- User can apply multiple filters at the same time
   5- User can remove all filters by clicking on the reset icon, under the 'Fleet-Vehicles' module
 
+  Background: User logins as a user
+    Given The user goes to the login page
 
+
+@FLT-2594
   Scenario Outline:"Manage Filter" button should be visible after the filter icon is clicked
 
-    Given The user goes to the login page
     And User logs in as "<userType>"
     When The user hover over Fleet menu then clicks Vehicles page
     And The user clicks on the filter icon
@@ -26,8 +29,8 @@ Feature: Filter feature
       | sales manager |
 
 
+  @FLT-2595
   Scenario Outline: Apply filter by clicking on the filter name
-    Given The user goes to the login page
     And User logs in as "<userType>"
     When The user hover over Fleet menu then clicks Vehicles page
     And The user clicks on the filter icon
@@ -45,8 +48,9 @@ Feature: Filter feature
       | sales manager | Driver        |
 
 
+
+  @FLT-2596
   Scenario Outline: Apply filters by typing the filter name rom the "Manage Filters" menu
-    Given The user goes to the login page
     And User logs in as "<userType>"
     When The user hover over Fleet menu then clicks Vehicles page
     And The user clicks on the filter icon
@@ -63,9 +67,8 @@ Feature: Filter feature
       | sales manager | Driver        |
 
 
-
+@FLT-2597
   Scenario Outline: Apply multiple filters at the same time
-    Given The user goes to the login page
     And User logs in as "<userType>"
     When The user hover over Fleet menu then clicks Vehicles page
     And The user clicks on the filter icon
@@ -85,9 +88,8 @@ Feature: Filter feature
 
 
 
-
+@FLT-2598
   Scenario Outline: Remove all filters by clicking on the reset icon
-    Given The user goes to the login page
     And User logs in as "<userType>"
     When The user hover over Fleet menu then clicks Vehicles page
     And The user clicks on the filter icon
