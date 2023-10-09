@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/test/step_definitions",
         dryRun = false,
-        tags = "@filterFunctionality"
+        tags = "@FLT-2599"
 )
 public class CukesRunner {
 }
