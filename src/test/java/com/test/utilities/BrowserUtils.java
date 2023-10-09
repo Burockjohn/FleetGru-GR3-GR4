@@ -495,23 +495,4 @@ public class BrowserUtils {
         new WebDriverWait(Driver.getDriver(), time).until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public static void waitForClickable(WebElement element,int timeOut){
-
-        try {
-            System.out.println(" try dayım" );
-            if (!element.isDisplayed()){
-                System.out.println("if in içindeyim ");
-                sleep(timeOut*5);
-
-                }else{
-                System.out.println("elsenin içindeyim" );
-                sleep(timeOut*1);
-
-            }
-
-        }catch (Exception e){
-            System.out.println("Yine mi" );
-        }
-    }
-
 }
