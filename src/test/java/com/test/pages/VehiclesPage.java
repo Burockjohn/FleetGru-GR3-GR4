@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class VehiclesPage {
+public class VehiclesPage extends BasePage{
 
     public VehiclesPage() {
         PageFactory.initElements(Driver.getDriver(),this);
@@ -46,6 +46,22 @@ public class VehiclesPage {
 
     @FindBy(xpath =   "//div//div[@class='message']")
     public WebElement flashMessageHolder;
+
+    //@FindBy(xpath = "//td[text()='Jame King']")
+
+    @FindBy(xpath ="(//tr)[4]" )
+    public WebElement carToBeDeleted;
+
+       @FindBy(className = "fa-chevron-right")
+    public WebElement nextPage;
+
+
+    @FindBy(css =".dib+label" )
+    public WebElement totalOfCar;
+
+
+
+
 
 
 
